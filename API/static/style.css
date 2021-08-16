@@ -3,6 +3,7 @@ body {
   padding: 0;
   font-size: 62.5%;
   font-family: Arial, Helvetica, sans-serif;
+  background: rgb(0, 11, 20);
 }
 
 @font-face {
@@ -38,6 +39,7 @@ body {
 .Map {
   font-size: 4rem;
   letter-spacing: 0px;
+  color: white;
 }
 
 .Agents {
@@ -53,6 +55,8 @@ body {
   padding: 23px;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 1rem;
+  margin: 1rem;
 }
 
 .Agent_Name {
@@ -60,4 +64,66 @@ body {
   text-align: center;
   width: 30%;
   font-size: 1.5rem;
+}
+
+.Lock {
+  filter: grayscale(100%);
+}
+
+.navbar {
+  display: flex;
+  list-style: none;
+  flex-direction: row;
+  margin: 0px;
+  flex-grow: 5;
+  font-size: 1rem;
+  font-family: val;
+}
+
+.navbar a {
+  padding: 1.2rem;
+  text-decoration: none;
+  color: white;
+}
+
+.navbar a:hover {
+  cursor: pointer;
+  background-color: rgb(0, 81, 255);
+}
+
+.navbar a:visited {
+  color: white;
+}
+
+nav {
+  background-color: rgb(1, 11, 41);
+}
+
+.navmain {
+  display: flex;
+  color: white;
+}
+
+.navend {
+  margin: 0px;
+  align-self: center;
+  justify-self: center;
+  font-size: 1rem;
+  padding: 1.2rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  background-color: rgb(206, 62, 62);
+}
+
+.navend:hover {
+  cursor: pointer;
+  background-color: rgb(131, 15, 0);
+}
+
+.agent_head {
+  color: white;
+}
+
+h1 {
+  color: white;
 }

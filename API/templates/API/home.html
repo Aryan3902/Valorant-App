@@ -1,3 +1,4 @@
+{% extends 'API/base.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,35 +12,22 @@
 </head>
 <body>
     
-    <p class="main">Hello OneRudeZombie</p>
+
+    {% block content %}
+    
+    <p class="main">Hello {{username}} #{{tag}}</p>
     <div>
         <ul class = "Progress">
             <li class="level"> Current Level : {{level}}</li>
             <li class="xp"> XP : {{xp}}</li>
         </ul>
     </div>
-    <h1>Last Played Map:</h1>
-    <div class = "Map">
-        {{ map|join:"" }}
-    </div>
+    
     <!-- <h2>{{owned}}</h2> -->
     
     <!-- <h2>{{aryan}}</h2> -->
-    <h1>Unlocked Agents:-</h1>
-
-    <div class = "Agents">
-        
-        {% for img in agents %}
-                <div class="agentbox">
-                    <img src="{{img.displayIcon}}">
-                    <br>
-                    <div class="Agent_Name">{{img.displayName}}</div>
-                </div>
-        {% endfor %}
-        
-    </div>
-    {{puuid}}
+    
 </body>
 </html>
 
-
+{% endblock %}
