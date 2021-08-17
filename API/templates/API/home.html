@@ -14,8 +14,26 @@
     
 
     {% block content %}
-    
-    <p class="main">Hello {{username}} #{{tag}}</p>
+    <div class="card">
+        <div class="firsthead">
+            <h1>Logged in as:</h1>
+            <h1 class="username">{{username}}</h1>
+            
+            {% for titlep in title %}
+                <h1 class="title">{{titlep.titleText}}</h1>
+            {% endfor %}
+        </div>
+        <div class="middelhead">
+            {% for cardp in card %}
+                <img src="{{cardp.largeArt}}">
+            {% endfor %}
+        </div>
+        <div class="lasthead">
+            <h1>Hi</h1>
+            <h1>Hi</h1>
+            
+        </div>
+    </div>
     <div>
         <ul class = "Progress">
             <li class="level"> Current Level : {{level}}</li>
@@ -26,7 +44,7 @@
     <!-- <h2>{{owned}}</h2> -->
     
     <!-- <h2>{{aryan}}</h2> -->
-    
+    {{title}}
 </body>
 </html>
 

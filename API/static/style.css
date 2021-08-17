@@ -11,18 +11,32 @@ body {
   font-family: val;
 }
 
-.main {
-  background: url("./images/1125041.png");
-  padding: 15rem;
-  text-align: center;
-  font-size: 5rem;
+.card {
+  display: flex;
+  justify-content: space-between;
   margin: 0;
+}
 
-  font-weight: bold;
+.firsthead {
+  flex: 1;
   color: white;
-  background-size: 60%;
-  background-position: center;
-  background-position-y: 1rem;
+  font-size: 1rem;
+}
+.firsthead h1 {
+  padding: 1rem;
+  margin: 0px;
+}
+
+.lasthead {
+  flex: 1;
+}
+
+.middlehead {
+  flex: 1;
+}
+
+.lasthead h1 {
+  padding: 1rem;
 }
 
 .Progress {
@@ -44,6 +58,7 @@ body {
 
 .Agents {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .Agents img {
