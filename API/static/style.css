@@ -11,6 +11,19 @@ body {
   font-family: val;
 }
 
+p {
+  margin: 0px;
+}
+
+.name {
+  flex-grow: 2;
+}
+
+.title {
+  font-size: 1.8rem;
+  opacity: 70%;
+}
+
 .card {
   display: flex;
   justify-content: space-between;
@@ -22,9 +35,31 @@ body {
   color: white;
   font-size: 1rem;
 }
-.firsthead h1 {
+
+.username {
+  font-size: 2rem;
+}
+.tag {
+  font-size: 0.8rem;
+}
+
+.user {
   padding: 1rem;
-  margin: 0px;
+  display: flex;
+  /* background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 1%,
+    rgb(122, 164, 255),
+    15%,
+    rgb(43, 99, 255) 35%,
+    55%,
+    rgb(122, 164, 255) 80%,
+    90%,
+    rgba(255, 255, 255, 0) 96%
+  ); */
+  background-image: url(./images/abstract-background-1024x273.jpg);
+  border-radius: 1rem;
+  margin: 1rem;
 }
 
 .lasthead {
@@ -35,19 +70,26 @@ body {
   flex: 1;
 }
 
-.lasthead h1 {
-  padding: 1rem;
+.advance {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1rem;
+}
+
+.advancement {
 }
 
 .Progress {
   margin: 0px;
   padding: 30px;
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   list-style: none;
-  font-size: 3.6rem;
-  background-color: lightcoral;
-  color: rgb(0, 0, 0);
+  font-size: 1.5rem;
+  background-color: rgb(95, 67, 67);
+  color: rgb(255, 255, 255);
+  border-radius: 1rem;
 }
 
 .Map {

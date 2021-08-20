@@ -16,12 +16,29 @@
     {% block content %}
     <div class="card">
         <div class="firsthead">
-            <h1>Logged in as:</h1>
-            <h1 class="username">{{username}}</h1>
+            <div class="user">
+                <div class="name">
+                    <p class="username">{{username}}</p>
+                    <p class ="tag">#{{tag}}</p>
+                </div>
+                {% for titlep in title %}
+                    <p class="title">{{titlep.titleText}}</p>
+                {% endfor %}
+            </div>
+            <div class = "advance">
+                <div class="advancement">
+                    <ul class = "Progress">
+                        <li class="level">Level : {{level}}</li>
+                        <li class="xp">XP : {{xp}}</li>
+                    </ul>
+                    
+                </div>
+                <img src="{{rank.largeIcon}}">
+                <div>
+                    Hi
+                </div>
+            </div>
             
-            {% for titlep in title %}
-                <h1 class="title">{{titlep.titleText}}</h1>
-            {% endfor %}
         </div>
         <div class="middelhead">
             {% for cardp in card %}
@@ -34,17 +51,13 @@
             
         </div>
     </div>
-    <div>
-        <ul class = "Progress">
-            <li class="level"> Current Level : {{level}}</li>
-            <li class="xp"> XP : {{xp}}</li>
-        </ul>
-    </div>
+    
     
     <!-- <h2>{{owned}}</h2> -->
     
     <!-- <h2>{{aryan}}</h2> -->
-    {{title}}
+ 
+    
 </body>
 </html>
 

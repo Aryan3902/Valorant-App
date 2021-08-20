@@ -18,9 +18,21 @@ match = requests.get(
     'https://pd.ap.a.pvp.net/match-history/v1/history/{}'.format(puuid), headers=headers).json()['History']
 loadout = requests.get(
     'https://pd.ap.a.pvp.net/personalization/v2/players/{}/playerloadout'.format(puuid), headers=headers).json()
+Qskills = requests.get(
+    'https://pd.ap.a.pvp.net/mmr/v1/players/{}'.format(puuid), headers=headers).json()['QueueSkills']
+CompetitiveTier = requests.get(
+    "https://valorant-api.com/v1/competitivetiers", headers=headers).json()
 
 
 def home(request):
+
+    Seasoninfo = Qskills['competitive']['SeasonalInfoBySeasonID']
+    for i in Seasoninfo:
+        Seasonid = i
+        break
+    rank = []
+    rank.append(Seasoninfo[Seasonid]['Rank'])
+    rankdetails = CompetitiveTier['data'][0]['tiers'][rank[0]]
     titles = requests.get(
         'https://valorant-api.com/v1/playertitles', headers=headers).json()['data']
     cards = requests.get(
@@ -36,11 +48,11 @@ def home(request):
         if title['uuid'] == PlayerTitle:
             Title.append(title)
     username = requests.get(
-        'https://api.henrikdev.xyz/valorant/v1/account/{}/{}'.format("baburao", "1942"), headers=headers).json()['data']
+        'https://api.henrikdev.xyz/valorant/v1/account/{}/{}'.format("OneRudeZombie", "NOOB"), headers=headers).json()['data']
     progress = requests.get(
         'https://pd.ap.a.pvp.net/account-xp/v1/players/{}'.format(puuid), headers=headers).json()['Progress']
 
-    return render(request, 'API/home.html', {'level': progress['Level'], 'xp': progress['XP'], 'username': username['name'], 'tag': username['tag'], 'card': Card, 'title': Title})
+    return render(request, 'API/home.html', {'level': progress['Level'], 'xp': progress['XP'], 'username': username['name'], 'tag': username['tag'], 'card': Card, 'title': Title, 'rank': rankdetails})
 
 
 def Match(request):
