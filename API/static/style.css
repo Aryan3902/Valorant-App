@@ -77,6 +77,13 @@ p {
 }
 
 .advancement {
+  background-color: rgb(95, 67, 67);
+  display: flex;
+}
+
+.rankname {
+  font-size: 1.6rem;
+  stroke: 20px white;
 }
 
 .Progress {
@@ -87,7 +94,7 @@ p {
   justify-content: space-evenly;
   list-style: none;
   font-size: 1.5rem;
-  background-color: rgb(95, 67, 67);
+
   color: rgb(255, 255, 255);
   border-radius: 1rem;
 }

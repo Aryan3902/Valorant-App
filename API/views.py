@@ -22,10 +22,29 @@ Qskills = requests.get(
     'https://pd.ap.a.pvp.net/mmr/v1/players/{}'.format(puuid), headers=headers).json()['QueueSkills']
 CompetitiveTier = requests.get(
     "https://valorant-api.com/v1/competitivetiers", headers=headers).json()
+match_history = requests.get(
+    'https://pd.ap.a.pvp.net/match-history/v1/history/{}'.format(puuid), headers=headers).json()['History']
 
 
 def home(request):
+    username = requests.get(
+        'https://api.henrikdev.xyz/valorant/v1/account/{}/{}'.format("OneRudeZombie", "NOOB"), headers=headers).json()['data']
+    progress = requests.get(
+        'https://pd.ap.a.pvp.net/account-xp/v1/players/{}'.format(puuid), headers=headers).json()['Progress']
 
+    kills = 0
+    deaths = 0
+    id = []
+    for ids in match:
+        id.append(ids['MatchID'])
+    for matches in range(10):
+        match_info = requests.get('https://pd.ap.a.pvp.net/match-details/v1/matches/{}'.format(
+            id[matches]), headers=headers).json()['players']
+        for player in match_info:
+            if player['gameName'] == username['name']:
+                kills = kills + player['stats']['kills']
+                deaths = deaths + player['stats']['deaths']
+    kd = kills/deaths
     Seasoninfo = Qskills['competitive']['SeasonalInfoBySeasonID']
     for i in Seasoninfo:
         Seasonid = i
@@ -47,12 +66,8 @@ def home(request):
     for title in titles:
         if title['uuid'] == PlayerTitle:
             Title.append(title)
-    username = requests.get(
-        'https://api.henrikdev.xyz/valorant/v1/account/{}/{}'.format("OneRudeZombie", "NOOB"), headers=headers).json()['data']
-    progress = requests.get(
-        'https://pd.ap.a.pvp.net/account-xp/v1/players/{}'.format(puuid), headers=headers).json()['Progress']
 
-    return render(request, 'API/home.html', {'level': progress['Level'], 'xp': progress['XP'], 'username': username['name'], 'tag': username['tag'], 'card': Card, 'title': Title, 'rank': rankdetails})
+    return render(request, 'API/home.html', {'level': progress['Level'], 'xp': progress['XP'], 'username': username['name'], 'tag': username['tag'], 'card': Card, 'title': Title, 'rank': rankdetails, 'kills': kills, 'deaths': deaths, 'kd': kd})
 
 
 def Match(request):

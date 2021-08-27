@@ -27,13 +27,19 @@
             </div>
             <div class = "advance">
                 <div class="advancement">
-                    <ul class = "Progress">
-                        <li class="level">Level : {{level}}</li>
-                        <li class="xp">XP : {{xp}}</li>
-                    </ul>
+                    <div>
+                        <ul class = "Progress">
+                            <li class="level">Level : {{level}}</li>
+                            <li class="xp">XP : {{xp}}</li>
+                        </ul>
+                    </div>
                     
                 </div>
-                <img src="{{rank.largeIcon}}">
+                <div>
+                    <img src="{{rank.smallIcon}}" width="120%">
+                    <p class="rankname">{{rank.tierName}}</p>
+                </div>
+
                 <div>
                     Hi
                 </div>
@@ -51,7 +57,9 @@
             
         </div>
     </div>
-    
+    <h1>{{kills}}</h1>
+    <h1>{{deaths}}</h1>
+    <h1>{{kd}}</h1>
     
     <!-- <h2>{{owned}}</h2> -->
     
@@ -62,3 +70,6 @@
 </html>
 
 {% endblock %}
+<!-- <script>
+    var i = 0
+</script> -->
