@@ -17,34 +17,83 @@
     <div class="card">
         <div class="firsthead">
             <div class="user">
-                <div class="name">
-                    <p class="username">{{username}}</p>
-                    <p class ="tag">#{{tag}}</p>
+                <div style="flex-grow: 2;">
+                    <p style="font-size: 2rem;">{{username}}</p>
+                    <p style="font-size: 0.8rem;">#{{tag}}</p>
                 </div>
                 {% for titlep in title %}
-                    <p class="title">{{titlep.titleText}}</p>
+                    <p style="font-size: 1.8rem;
+                    opacity: 70%;">{{titlep.titleText}}</p>
                 {% endfor %}
             </div>
             <div class = "advance">
-                <div class="advancement">
-                    <div>
-                        <ul class = "Progress">
-                            <li class="level">Level : {{level}}</li>
-                            <li class="xp">XP : {{xp}}</li>
-                        </ul>
+              
+                    <div class="Progress">
+                        
+                            <p style="padding: 1rem;">Level : {{level}}</p>
+                            <p style="padding: 1rem;">XP : {{xp}}</p>
+                       
                     </div>
-                    
-                </div>
-                <div>
-                    <img src="{{rank.smallIcon}}" width="120%">
-                    <p class="rankname">{{rank.tierName}}</p>
-                </div>
-
-                <div>
-                    Hi
+                    <div class="rank">
+                        <img src="{{rank.largeIcon}}" width="70%" >
+                        <progress id="file" max="100" value="{{rr}}">{{rr}}</progress>
+                        <p class="rankname">{{rank.tierName}}</p>
+                        
+                    </div>
+                    <div style="flex: 1;">
+                        <h1 style="text-align: center; margin-bottom: 4rem;">K/D: {{kd}}*</h1>
+                        <p style="font-size: 0.6rem;">*The following K/D is calculated from your previous 10 matches.</p>
+                    </div>
+                
+               
+            </div>
+            <div class="stats">
+                <h1 class="stats-head">Win Stats*</h1>
+                <div style="display: flex; padding: 1.2rem;">
+                
+                    <div class="gamemode">
+                        <h2>Competitive:</h2>
+                        <div style="display: flex; justify-content: space-evenly; font-size: 1.3rem;">
+                            <div>
+                                <p>{{compwins}}W</p>
+                                <p>{{comploss}}L</p>
+                            </div>
+                            <p class="winrate">{{winpcomp}}%</p>
+                        </div>
+                    </div>
+                    <div class="gamemode">
+                        <h2>Unrated:</h2>
+                        <div style="display: flex; justify-content: space-evenly; font-size: 1.3rem;">
+                            <div>
+                                <p>{{urwins}}W</p>
+                                <p>{{urloss}}L</p>
+                            </div>
+                            <p class="winrate">{{winpur}}%</p>
+                        </div>
+                    </div>
+                    <div class="gamemode">
+                        <h2>Spike Rush:</h2>
+                        <div style="display: flex; justify-content: space-evenly; font-size: 1.3rem;">
+                            <div>
+                                <p>{{srwins}}W</p>
+                                <p>{{srloss}}L</p>
+                            </div>
+                            <p class="winrate">{{winpsr}}%</p>
+                        </div>
+                    </div>
+                    <div class="gamemode">
+                        <h2>Custom:</h2>
+                        <div style="display: flex; justify-content: space-evenly; font-size: 1.3rem;">
+                            <div>
+                                <p>{{cuwins}}W</p>
+                                <p>{{culoss}}L</p>
+                            </div>
+                            <p class="winrate">{{winpcu}}%</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
+            <p style="padding: 0.5rem;">*The following stats are for the current act only, EP 3 ACT 1.</p>
         </div>
         <div class="middelhead">
             {% for cardp in card %}
@@ -52,24 +101,12 @@
             {% endfor %}
         </div>
         <div class="lasthead">
-            <h1>Hi</h1>
-            <h1>Hi</h1>
+            <!-- <h1>Hi</h1>
+            <h1>Hi</h1> -->
             
         </div>
     </div>
-    <h1>{{kills}}</h1>
-    <h1>{{deaths}}</h1>
-    <h1>{{kd}}</h1>
-    
-    <!-- <h2>{{owned}}</h2> -->
-    
-    <!-- <h2>{{aryan}}</h2> -->
- 
-    
 </body>
 </html>
 
 {% endblock %}
-<!-- <script>
-    var i = 0
-</script> -->

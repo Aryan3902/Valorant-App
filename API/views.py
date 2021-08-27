@@ -5,13 +5,15 @@ from django.shortcuts import render
 
 from .auth import run
 # Create your views here.
-headers = run('OnerudeZombie', 'Aryan1122?')
+username = 'OneRudeZombie'
+password = 'Aryan1122?'
+headers = run(username, password)
 content = requests.get(
     'https://shared.ap.a.pvp.net/content-service/v2/content', headers=headers).json()
 agent_pic = requests.get(
     'https://valorant-api.com/v1/agents', headers=headers).json()['data']
 puuid = requests.get(
-    'https://api.henrikdev.xyz/valorant/v1/account/{}/{}'.format("OnerudeZombie", "NOOB"), headers=headers).json()['data']['puuid']
+    'https://api.henrikdev.xyz/valorant/v1/account/{}/{}'.format(username, "NOOB"), headers=headers).json()['data']['puuid']
 all = requests.get(
     'https://valorant-api.com/v1/agents?isPlayableCharacter=true').json()['data']
 match = requests.get(
@@ -28,7 +30,7 @@ match_history = requests.get(
 
 def home(request):
     username = requests.get(
-        'https://api.henrikdev.xyz/valorant/v1/account/{}/{}'.format("OneRudeZombie", "NOOB"), headers=headers).json()['data']
+        'https://api.henrikdev.xyz/valorant/v1/account/{}/{}'.format('OneRudeZombie', "NOOB"), headers=headers).json()['data']
     progress = requests.get(
         'https://pd.ap.a.pvp.net/account-xp/v1/players/{}'.format(puuid), headers=headers).json()['Progress']
 
@@ -44,11 +46,35 @@ def home(request):
             if player['gameName'] == username['name']:
                 kills = kills + player['stats']['kills']
                 deaths = deaths + player['stats']['deaths']
-    kd = kills/deaths
+    kd = round(kills/deaths, 2)
     Seasoninfo = Qskills['competitive']['SeasonalInfoBySeasonID']
     for i in Seasoninfo:
         Seasonid = i
         break
+    unrated = Qskills['unrated']['SeasonalInfoBySeasonID'][Seasonid]
+    urwins = unrated['NumberOfWinsWithPlacements']
+    urtotal = unrated["NumberOfGames"]
+    urloss = urtotal - urwins
+    winpur = round(urwins*100/urtotal, 2)
+
+    spikerush = Qskills['spikerush']['SeasonalInfoBySeasonID'][Seasonid]
+    srwins = spikerush['NumberOfWinsWithPlacements']
+    srtotal = spikerush["NumberOfGames"]
+    srloss = srtotal - srwins
+    winpsr = round(srwins*100/srtotal, 2)
+
+    compwins = Seasoninfo[Seasonid]['NumberOfWinsWithPlacements']
+    comptotal = Seasoninfo[Seasonid]["NumberOfGames"]
+    comploss = comptotal-compwins
+    rr = Seasoninfo[Seasonid]["RankedRating"]
+    winpcomp = round(compwins*100/comptotal, 2)
+
+    custom = Qskills['custom']['SeasonalInfoBySeasonID'][Seasonid]
+    cuwins = custom['NumberOfWinsWithPlacements']
+    cutotal = custom["NumberOfGames"]
+    culoss = cutotal - cuwins
+    winpcu = round(cuwins*100/cutotal, 2)
+
     rank = []
     rank.append(Seasoninfo[Seasonid]['Rank'])
     rankdetails = CompetitiveTier['data'][0]['tiers'][rank[0]]
@@ -67,7 +93,12 @@ def home(request):
         if title['uuid'] == PlayerTitle:
             Title.append(title)
 
-    return render(request, 'API/home.html', {'level': progress['Level'], 'xp': progress['XP'], 'username': username['name'], 'tag': username['tag'], 'card': Card, 'title': Title, 'rank': rankdetails, 'kills': kills, 'deaths': deaths, 'kd': kd})
+    return render(request, 'API/home.html', {'level': progress['Level'], 'xp': progress['XP'], 'username': username['name'],
+                                             'tag': username['tag'], 'card': Card, 'title': Title, 'rank': rankdetails, 'kills': kills,
+                                             'deaths': deaths, 'kd': kd, 'compwins': compwins, 'comptotal': comptotal, 'comploss': comploss,
+                                             'winpcomp': winpcomp, 'rr': rr, 'urwins': urwins, 'urtotal': urtotal, 'urloss': urloss, 'winpur': winpur,
+                                             'srwins': srwins, 'srtotal': srtotal, 'srloss': srloss, 'winpsr': winpsr,
+                                             'cuwins': cuwins, 'cutotal': cutotal, 'culoss': culoss, 'winpcu': winpcu})
 
 
 def Match(request):

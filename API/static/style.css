@@ -15,19 +15,16 @@ p {
   margin: 0px;
 }
 
-.name {
-  flex-grow: 2;
-}
-
-.title {
-  font-size: 1.8rem;
-  opacity: 70%;
-}
-
 .card {
   display: flex;
   justify-content: space-between;
   margin: 0;
+}
+
+.gamemode {
+  flex: 1;
+  padding: 1rem;
+  padding-top: 0rem;
 }
 
 .firsthead {
@@ -35,28 +32,18 @@ p {
   color: white;
   font-size: 1rem;
 }
-
-.username {
-  font-size: 2rem;
+.stats-head {
+  margin: 0;
+  text-align: center;
+  padding: 1.2rem;
+  padding-bottom: 0rem;
+  text-decoration: underline;
+  margin-top: 0.7rem;
 }
-.tag {
-  font-size: 0.8rem;
-}
-
 .user {
   padding: 1rem;
   display: flex;
-  /* background-image: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0) 1%,
-    rgb(122, 164, 255),
-    15%,
-    rgb(43, 99, 255) 35%,
-    55%,
-    rgb(122, 164, 255) 80%,
-    90%,
-    rgba(255, 255, 255, 0) 96%
-  ); */
+
   background-image: url(./images/abstract-background-1024x273.jpg);
   border-radius: 1rem;
   margin: 1rem;
@@ -69,32 +56,59 @@ p {
 .middlehead {
   flex: 1;
 }
-
+.stats {
+  background-color: rgb(1, 5, 43);
+  border-radius: 1rem;
+  box-shadow: inset 0 0 20px rgb(0, 11, 20);
+  margin: 1rem;
+}
 .advance {
   display: flex;
   justify-content: space-evenly;
   margin: 1rem;
+  background-color: rgb(1, 5, 43);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  box-shadow: inset 0 0 20px rgb(0, 11, 20);
 }
 
-.advancement {
-  background-color: rgb(95, 67, 67);
-  display: flex;
+.rank {
+  flex: 1;
+  padding: 1rem;
+  justify-content: center;
+}
+
+.rank progress,
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .rankname {
-  font-size: 1.6rem;
-  stroke: 20px white;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.winrate {
+  align-self: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  padding: 0.4rem;
 }
 
 .Progress {
+  text-align: center;
   margin: 0px;
-  padding: 30px;
+  padding: 6px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  list-style: none;
-  font-size: 1.5rem;
 
+  list-style: none;
+  font-size: 2rem;
+  flex: 1;
   color: rgb(255, 255, 255);
   border-radius: 1rem;
 }
