@@ -17,15 +17,19 @@ puuid = requests.get(
 all = requests.get(
     'https://valorant-api.com/v1/agents?isPlayableCharacter=true').json()['data']
 match = requests.get(
-    'https://pd.ap.a.pvp.net/match-history/v1/history/{}'.format(puuid), headers=headers).json()['History']
+    'https://pd.ap.a.pvp.net/match-history/v1/history/{}?startIndex=0&endIndex=20'.format(puuid), headers=headers).json()['History']
 loadout = requests.get(
     'https://pd.ap.a.pvp.net/personalization/v2/players/{}/playerloadout'.format(puuid), headers=headers).json()
 Qskills = requests.get(
     'https://pd.ap.a.pvp.net/mmr/v1/players/{}'.format(puuid), headers=headers).json()['QueueSkills']
 CompetitiveTier = requests.get(
     "https://valorant-api.com/v1/competitivetiers", headers=headers).json()
+competitiveupdate = requests.get(
+    f'https://pd.ap.a.pvp.net/mmr/v1/players/{puuid}/competitiveupdates?startIndex=0&endIndex=15&queue=competitive', headers=headers).json()['Matches']
 match_history = requests.get(
-    'https://pd.ap.a.pvp.net/match-history/v1/history/{}'.format(puuid), headers=headers).json()['History']
+    f'https://pd.ap.a.pvp.net/match-history/v1/history/{puuid}?startIndex=0&endIndex=20', headers=headers).json()['History']
+maps = requests.get('https://valorant-api.com/v1/maps',
+                    headers=headers).json()['data']
 
 
 def home(request):
@@ -33,13 +37,13 @@ def home(request):
         'https://api.henrikdev.xyz/valorant/v1/account/{}/{}'.format('OneRudeZombie', "NOOB"), headers=headers).json()['data']
     progress = requests.get(
         'https://pd.ap.a.pvp.net/account-xp/v1/players/{}'.format(puuid), headers=headers).json()['Progress']
-
+    rrupdate = competitiveupdate[0]['RankedRatingEarned']
     kills = 0
     deaths = 0
     id = []
     for ids in match:
         id.append(ids['MatchID'])
-    for matches in range(10):
+    for matches in range(20):
         match_info = requests.get('https://pd.ap.a.pvp.net/match-details/v1/matches/{}'.format(
             id[matches]), headers=headers).json()['players']
         for player in match_info:
@@ -93,12 +97,44 @@ def home(request):
         if title['uuid'] == PlayerTitle:
             Title.append(title)
 
+    lastmatch = requests.get(
+        'https://pd.ap.a.pvp.net/match-details/v1/matches/{}'.format(match[0]['MatchID']), headers=headers).json()
+    match_details = lastmatch['matchInfo']
+    timeplayed_sec = (match_details['gameLengthMillis']/1000) % 60
+    timeplayed_min = match_details['gameLengthMillis']/60000
+    players = lastmatch['players']
+    for user in players:
+        if user['gameName'] == username['name']:
+            teamid = user['teamId']
+            agent_lastid = user['characterId']
+    for agents in agent_pic:
+        if agent_lastid == agents['uuid']:
+            agent_lastpic = agents['displayIconSmall']
+    matchresult = lastmatch['teams']
+    for teams in matchresult:
+        if teams['teamId'] == teamid:
+            if teams['won']:
+                result = 'Victory'
+            else:
+                result = 'Defeat'
+
+    gamemode = match_details['queueID']
+    if gamemode == 'ggteam':
+        gamemode = 'Escalation'
+    if gamemode == 'onefa':
+        gamemode == 'Replication'
+    for mapId in maps:
+        if mapId['mapUrl'] == match_details['mapId']:
+            mapname = mapId['displayName']
+            mappic = mapId['listViewIcon']
+
     return render(request, 'API/home.html', {'level': progress['Level'], 'xp': progress['XP'], 'username': username['name'],
                                              'tag': username['tag'], 'card': Card, 'title': Title, 'rank': rankdetails, 'kills': kills,
                                              'deaths': deaths, 'kd': kd, 'compwins': compwins, 'comptotal': comptotal, 'comploss': comploss,
                                              'winpcomp': winpcomp, 'rr': rr, 'urwins': urwins, 'urtotal': urtotal, 'urloss': urloss, 'winpur': winpur,
                                              'srwins': srwins, 'srtotal': srtotal, 'srloss': srloss, 'winpsr': winpsr,
-                                             'cuwins': cuwins, 'cutotal': cutotal, 'culoss': culoss, 'winpcu': winpcu})
+                                             'cuwins': cuwins, 'cutotal': cutotal, 'culoss': culoss, 'winpcu': winpcu, 'rrchange': rrupdate,
+                                             'sec': int(timeplayed_sec), 'min': int(timeplayed_min), 'gamemode': gamemode, 'mapname': mapname, 'mappic': mappic, 'result': result, 'agentpic': agent_lastpic})
 
 
 def Match(request):
@@ -106,9 +142,6 @@ def Match(request):
         'https://pd.ap.a.pvp.net/match-details/v1/matches/{}'.format(match[0]['MatchID']), headers=headers).json()['matchInfo']
 
     map = []
-
-    maps = requests.get('https://valorant-api.com/v1/maps',
-                        headers=headers).json()['data']
 
     for mapId in maps:
         if mapId['mapUrl'] == match_info['mapId']:

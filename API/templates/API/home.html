@@ -35,14 +35,23 @@
                        
                     </div>
                     <div class="rank">
-                        <img src="{{rank.largeIcon}}" width="70%" >
+                        <div style="display: flex;">
+                            <img src="{{rank.largeIcon}}" width="70%" style="margin-right: 0;">
+                            {% if rrchange > 0 %}
+                                <h2 style="color: green;">{{rrchange}}</h2>
+                            {% else %}
+                                <h2 style="color: red;">{{rrchange}}</h2>
+                            {%endif%}
+
+                        </div>
+                        
                         <progress id="file" max="100" value="{{rr}}">{{rr}}</progress>
                         <p class="rankname">{{rank.tierName}}</p>
                         
                     </div>
                     <div style="flex: 1;">
                         <h1 style="text-align: center; margin-bottom: 4rem;">K/D: {{kd}}*</h1>
-                        <p style="font-size: 0.6rem;">*The following K/D is calculated from your previous 10 matches.</p>
+                        <p style="font-size: 0.6rem;">*The following K/D is calculated from your previous 20 matches.</p>
                     </div>
                 
                
@@ -100,9 +109,22 @@
                 <img src="{{cardp.largeArt}}">
             {% endfor %}
         </div>
-        <div class="lasthead">
-            <!-- <h1>Hi</h1>
-            <h1>Hi</h1> -->
+        <div class="lasthead" style="color: white;">
+            <h1>Last Match details:</h1>
+            {{min}}
+                {{sec}}
+                {{gamemode}}
+                {{mapname}}
+                <div style="display: flex;">                    
+                    <img src="{{agentpic}}" class="agentpic" title="Agent played in last match">
+                    <div>
+                        <img src="{{mappic}}" class="mappic">
+                    </div>                                    
+                    
+                </div>
+                
+                
+                {{result}}
             
         </div>
     </div>
