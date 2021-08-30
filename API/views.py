@@ -134,7 +134,7 @@ def home(request):
                                              'winpcomp': winpcomp, 'rr': rr, 'urwins': urwins, 'urtotal': urtotal, 'urloss': urloss, 'winpur': winpur,
                                              'srwins': srwins, 'srtotal': srtotal, 'srloss': srloss, 'winpsr': winpsr,
                                              'cuwins': cuwins, 'cutotal': cutotal, 'culoss': culoss, 'winpcu': winpcu, 'rrchange': rrupdate,
-                                             'sec': int(timeplayed_sec), 'min': int(timeplayed_min), 'gamemode': gamemode, 'mapname': mapname, 'mappic': mappic, 'result': result, 'agentpic': agent_lastpic})
+                                             'sec': int(timeplayed_sec), 'min': int(timeplayed_min), 'gamemode': gamemode.upper(), 'mapname': mapname, 'mappic': mappic, 'result': result, 'agentpic': agent_lastpic})
 
 
 def Match(request):

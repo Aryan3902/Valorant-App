@@ -9,7 +9,11 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <title>Valorant Stats</title>
+    
 </head>
+<style> 
+    
+</style>
 <body>
     
 
@@ -113,18 +117,24 @@
             <h1>Last Match details:</h1>
             {{min}}
                 {{sec}}
-                {{gamemode}}
+                
                 {{mapname}}
                 <div style="display: flex;">                    
                     <img src="{{agentpic}}" class="agentpic" title="Agent played in last match">
-                    <div>
-                        <img src="{{mappic}}" class="mappic">
+                    <div style="margin-top: 1rem;">
+                        
+                        <div class="matchresult" style="background-image: url('{{mappic}}');">
+                            <p style="margin: 0; flex: 1;">{{gamemode}}</p>
+                            <p>{{result}}</p>
+                        </div>
+                        
+        
                     </div>                                    
                     
                 </div>
                 
                 
-                {{result}}
+                
             
         </div>
     </div>

@@ -92,6 +92,13 @@ p {
   margin-right: auto;
 }
 
+.matchresult {
+  display: flex;
+  font-size: 1.3rem;
+  border-radius: 1rem;
+  padding: 2.7rem;
+}
+
 .rankname {
   font-size: 1.4rem;
   text-align: center;
