@@ -30,6 +30,8 @@ match_history = requests.get(
     f'https://pd.ap.a.pvp.net/match-history/v1/history/{puuid}?startIndex=0&endIndex=20', headers=headers).json()['History']
 maps = requests.get('https://valorant-api.com/v1/maps',
                     headers=headers).json()['data']
+gamemodes = requests.get(
+    'https://valorant-api.com/v1/gamemodes', headers=headers).json()['data']
 
 
 def home(request):
@@ -117,7 +119,9 @@ def home(request):
                 result = 'Victory'
             else:
                 result = 'Defeat'
-
+            roundsWon = teams['roundsWon']
+            roundsPlayed = teams['roundsPlayed']
+            roundsLost = abs(roundsPlayed-roundsWon)
     gamemode = match_details['queueID']
     if gamemode == 'ggteam':
         gamemode = 'Escalation'
@@ -128,13 +132,19 @@ def home(request):
             mapname = mapId['displayName']
             mappic = mapId['listViewIcon']
 
+    for mode in gamemodes:
+        if mode['displayName'] == gamemode:
+            gamemodeIcon = mode['displayIcon']
+
     return render(request, 'API/home.html', {'level': progress['Level'], 'xp': progress['XP'], 'username': username['name'],
                                              'tag': username['tag'], 'card': Card, 'title': Title, 'rank': rankdetails, 'kills': kills,
                                              'deaths': deaths, 'kd': kd, 'compwins': compwins, 'comptotal': comptotal, 'comploss': comploss,
                                              'winpcomp': winpcomp, 'rr': rr, 'urwins': urwins, 'urtotal': urtotal, 'urloss': urloss, 'winpur': winpur,
                                              'srwins': srwins, 'srtotal': srtotal, 'srloss': srloss, 'winpsr': winpsr,
                                              'cuwins': cuwins, 'cutotal': cutotal, 'culoss': culoss, 'winpcu': winpcu, 'rrchange': rrupdate,
-                                             'sec': int(timeplayed_sec), 'min': int(timeplayed_min), 'gamemode': gamemode.upper(), 'mapname': mapname, 'mappic': mappic, 'result': result, 'agentpic': agent_lastpic})
+                                             'sec': int(timeplayed_sec), 'min': int(timeplayed_min), 'gamemode': gamemode.upper(),
+                                             'mapname': mapname, 'mappic': mappic, 'result': result.upper(), 'agentpic': agent_lastpic, 'icon': gamemodeIcon,
+                                             'won': roundsWon, 'lost': roundsLost})
 
 
 def Match(request):

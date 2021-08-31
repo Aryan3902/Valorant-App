@@ -9,6 +9,9 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <title>Valorant Stats</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     
 </head>
 <style> 
@@ -45,7 +48,7 @@
                                 <h2 style="color: green;">{{rrchange}}</h2>
                             {% else %}
                                 <h2 style="color: red;">{{rrchange}}</h2>
-                            {%endif%}
+                            {% endif %}
 
                         </div>
                         
@@ -115,25 +118,39 @@
         </div>
         <div class="lasthead" style="color: white;">
             <h1>Last Match details:</h1>
-            {{min}}
-                {{sec}}
-                
-                {{mapname}}
+            
                 <div style="display: flex;">                    
-                    <img src="{{agentpic}}" class="agentpic" title="Agent played in last match">
-                    <div style="margin-top: 1rem;">
+                    
+                    <div style="margin: 1rem;">
                         
                         <div class="matchresult" style="background-image: url('{{mappic}}');">
-                            <p style="margin: 0; flex: 1;">{{gamemode}}</p>
-                            <p>{{result}}</p>
+                            
+                            {% if result == 'DEFEAT' %}
+                                <div class="lastmapDefeat">
+                                    <img src="{{icon}}"  class="modeIcon" title="{{gamemode}}">
+                                <div style="align-self: center;">
+                                    <p class="resultDefeat">{{result}}</p>
+                                    <p style="color: rgb(255, 255, 255); flex: 2;">{{mapname}}</p>
+                                </div>
+                                </div>
+                                <p style="padding: 0.8rem; font-size: 3rem;">{{won}}-{{lost}}</p>
+                            {% else %}
+                            <div class="lastmapVictory">
+                                <img src="{{icon}}"  class="modeIcon" title="{{gamemode}}">
+                            <div style="align-self: center;">
+                                <p class="resultVictory">{{result}}</p>
+                                <p style="color: rgb(255, 255, 255); flex: 2;">{{mapname}}</p>
+                            </div>
+                            </div>
+                            <p style="padding: 0.8rem; font-size: 3rem;">{{won}}-{{lost}}</p>
+                            {% endif %}
                         </div>
-                        
-        
+                        {{min}}
+                        {{sec}}
+                    <img src="{{agentpic}}" class="agentpic" title="Agent played in last match">
                     </div>                                    
                     
                 </div>
-                
-                
                 
             
         </div>
