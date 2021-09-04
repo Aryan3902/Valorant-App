@@ -5,15 +5,16 @@ from django.shortcuts import render
 
 from .auth import run
 # Create your views here.
-username = 'OneRudeZombie'
+Username = 'OneRudeZombie'
+gameUsername = 'SEN Cheems'
 password = 'Aryan1122?'
-headers = run(username, password)
+headers = run(Username, password)
 content = requests.get(
     'https://shared.ap.a.pvp.net/content-service/v2/content', headers=headers).json()
 agent_pic = requests.get(
     'https://valorant-api.com/v1/agents', headers=headers).json()['data']
 puuid = requests.get(
-    'https://api.henrikdev.xyz/valorant/v1/account/{}/{}'.format(username, "NOOB"), headers=headers).json()['data']['puuid']
+    'https://api.henrikdev.xyz/valorant/v1/account/{}/{}'.format(gameUsername, "NOOB"), headers=headers).json()['data']['puuid']
 all = requests.get(
     'https://valorant-api.com/v1/agents?isPlayableCharacter=true').json()['data']
 match = requests.get(
@@ -32,11 +33,12 @@ maps = requests.get('https://valorant-api.com/v1/maps',
                     headers=headers).json()['data']
 gamemodes = requests.get(
     'https://valorant-api.com/v1/gamemodes', headers=headers).json()['data']
+gamemodes[0]['displayName'] = 'Unrated'
 
 
 def home(request):
     username = requests.get(
-        'https://api.henrikdev.xyz/valorant/v1/account/{}/{}'.format('OneRudeZombie', "NOOB"), headers=headers).json()['data']
+        'https://api.henrikdev.xyz/valorant/v1/account/{}/{}'.format(gameUsername, "NOOB"), headers=headers).json()['data']
     progress = requests.get(
         'https://pd.ap.a.pvp.net/account-xp/v1/players/{}'.format(puuid), headers=headers).json()['Progress']
     rrupdate = competitiveupdate[0]['RankedRatingEarned']
@@ -109,6 +111,10 @@ def home(request):
         if user['gameName'] == username['name']:
             teamid = user['teamId']
             agent_lastid = user['characterId']
+            killcount = user['stats']['kills']
+            deathcount = user['stats']['deaths']
+            assistscount = user['stats']['assists']
+            scorecount = user['stats']['score']
     for agents in agent_pic:
         if agent_lastid == agents['uuid']:
             agent_lastpic = agents['displayIconSmall']
@@ -133,8 +139,11 @@ def home(request):
             mappic = mapId['listViewIcon']
 
     for mode in gamemodes:
-        if mode['displayName'] == gamemode:
+        if mode['displayName'].upper() == gamemode.upper():
             gamemodeIcon = mode['displayIcon']
+            break
+        else:
+            gamemodeIcon = 'https://inceptum-stor.icons8.com/s2he3DWV4kZd/valorant%20icon.png'
 
     return render(request, 'API/home.html', {'level': progress['Level'], 'xp': progress['XP'], 'username': username['name'],
                                              'tag': username['tag'], 'card': Card, 'title': Title, 'rank': rankdetails, 'kills': kills,
@@ -144,14 +153,14 @@ def home(request):
                                              'cuwins': cuwins, 'cutotal': cutotal, 'culoss': culoss, 'winpcu': winpcu, 'rrchange': rrupdate,
                                              'sec': int(timeplayed_sec), 'min': int(timeplayed_min), 'gamemode': gamemode.upper(),
                                              'mapname': mapname, 'mappic': mappic, 'result': result.upper(), 'agentpic': agent_lastpic, 'icon': gamemodeIcon,
-                                             'won': roundsWon, 'lost': roundsLost})
+                                             'won': roundsWon, 'lost': roundsLost, 'aryan': mode['displayName'], 'killcount': killcount, 'deathcount': deathcount, 'assistscount': assistscount, 'scorecount': scorecount})
 
 
 def Match(request):
-    match_info = requests.get(
+    match_info=requests.get(
         'https://pd.ap.a.pvp.net/match-details/v1/matches/{}'.format(match[0]['MatchID']), headers=headers).json()['matchInfo']
 
-    map = []
+    map=[]
 
     for mapId in maps:
         if mapId['mapUrl'] == match_info['mapId']:
@@ -172,25 +181,25 @@ def collection(request):
 
 
 def agents(request):
-    owned = requests.get(
+    owned=requests.get(
         f'https://pd.ap.a.pvp.net/store/v1/entitlements/{puuid}/01bb38e1-da47-4e6a-9b3d-945fe4655707', headers=headers).json()['Entitlements']
 
-    MainList = []
-    characters_main = content['Characters']
+    MainList=[]
+    characters_main=content['Characters']
     for agents in owned:
         for characters in characters_main:
             if characters['ID'].lower() == agents['ItemID']:
                 MainList.append(characters['Name'])
-    MainList = sorted(MainList)
-    agent_name = []
-    agent_locked = []
+    MainList=sorted(MainList)
+    agent_name=[]
+    agent_locked=[]
     for agent in agent_pic:
         if agent['displayName'] in {"Phoenix", "Jett", "Sova", "Sage", "Brimstone"}:
             continue
         for characters_pic in owned:
             if characters_pic['ItemID'] == agent['uuid']:
                 agent_name.append(agent)
-    locked = {agent['uuid'] for agent in all if not agent['isBaseContent']
+    locked={agent['uuid'] for agent in all if not agent['isBaseContent']
               } - {agent['ItemID'] for agent in owned}
     for locked_agent in locked:
         for character_locked in agent_pic:

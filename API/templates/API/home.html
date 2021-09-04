@@ -117,40 +117,65 @@
             {% endfor %}
         </div>
         <div class="lasthead" style="color: white;">
-            <h1>Last Match details:</h1>
-            
-                <div style="display: flex;">                    
+            <p style="font-size: 2rem; stroke-width: 1rem;">Last Match details:</p>            
+                <div>                    
                     
                     <div style="margin: 1rem;">
                         
                         <div class="matchresult" style="background-image: url('{{mappic}}');">
                             
                             {% if result == 'DEFEAT' %}
-                                <div class="lastmapDefeat">
-                                    <img src="{{icon}}"  class="modeIcon" title="{{gamemode}}">
-                                <div style="align-self: center;">
-                                    <p class="resultDefeat">{{result}}</p>
-                                    <p style="color: rgb(255, 255, 255); flex: 2;">{{mapname}}</p>
+                                <div>
+                                    <div class="lastmapDefeat">
+                                        <img src="{{icon}}"  class="modeIcon" title="{{gamemode}}">
+                                        <div style="align-self: center;">
+                                            <p class="resultDefeat">{{result}}</p>
+                                            <p style="color: rgb(255, 255, 255); flex: 2;">{{mapname}}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                </div>
-                                <p style="padding: 0.8rem; font-size: 3rem;">{{won}}-{{lost}}</p>
+                                
+                                <div style="padding: 0.8rem; font-size: 3rem; background-color: rgb(241, 55, 70);">{{won}}-{{lost}}</div>
                             {% else %}
-                            <div class="lastmapVictory">
-                                <img src="{{icon}}"  class="modeIcon" title="{{gamemode}}">
-                            <div style="align-self: center;">
-                                <p class="resultVictory">{{result}}</p>
-                                <p style="color: rgb(255, 255, 255); flex: 2;">{{mapname}}</p>
-                            </div>
-                            </div>
-                            <p style="padding: 0.8rem; font-size: 3rem;">{{won}}-{{lost}}</p>
+                                <div>
+                                    <div class="lastmapVictory">
+                                        <img src="{{icon}}"  class="modeIcon" title="{{gamemode}}">
+                                        <div style="align-self: center;">
+                                            <p class="resultVictory">{{result}}</p>
+                                            <p style="color: rgb(255, 255, 255); flex: 2;">{{mapname}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             {% endif %}
+                            <div style="padding: 0.8rem; font-size: 3rem; background-color: rgb(0, 189, 16);">{{won}}-{{lost}}</div>                           
+                            
                         </div>
-                        {{min}}
-                        {{sec}}
-                    <img src="{{agentpic}}" class="agentpic" title="Agent played in last match">
-                    </div>                                    
+                        
                     
+                    </div>                                   
+                
                 </div>
+            
+                <div>
+                    <div class="agentpic">
+                        
+                        <img src="{{agentpic}}"  title="Agent played in last match" width="10%">
+                        <div style="color: black; font-size: 1.5rem;align-self: center;">K / D / A <br>
+                        {{killcount}}/
+                        {{deathcount}}/
+                        {{assistscount}}</div>
+                        <div style="color: black; font-size: 2rem;align-self: center;margin-right:1rem;">Score: {{scorecount}}</div>
+                        
+                    </div>
+                    
+                    <div>
+                        <p style="text-align: center; font-size: 2rem; padding: 2rem; ">Game Time: <br>{{min}} Min {{sec}} Sec</p>
+                    </div>
+                </div>
+                
+                
+            
                 
             
         </div>
