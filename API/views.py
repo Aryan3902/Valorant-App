@@ -86,21 +86,8 @@ def home(request):
     rank = []
     rank.append(Seasoninfo[Seasonid]['Rank'])
     rankdetails = CompetitiveTier['data'][0]['tiers'][rank[0]]
-    titles = requests.get(
-        'https://valorant-api.com/v1/playertitles', headers=headers).json()['data']
-    cards = requests.get(
-        'https://valorant-api.com/v1/playercards', headers=headers).json()['data']
-    PlayerCard = loadout['Identity']['PlayerCardID']
-    PlayerTitle = loadout['Identity']['PlayerTitleID']
-    Title = []
-    Card = []
-    for card in cards:
-        if card['uuid'] == PlayerCard:
-            Card.append(card)
-    for title in titles:
-        if title['uuid'] == PlayerTitle:
-            Title.append(title)
 
+    userparty = []
     lastmatch = requests.get(
         'https://pd.ap.a.pvp.net/match-details/v1/matches/{}'.format(match[0]['MatchID']), headers=headers).json()
     match_details = lastmatch['matchInfo']
@@ -115,6 +102,32 @@ def home(request):
             deathcount = user['stats']['deaths']
             assistscount = user['stats']['assists']
             scorecount = user['stats']['score']
+            partyid = user['partyId']
+
+    titles = requests.get(
+        'https://valorant-api.com/v1/playertitles', headers=headers).json()['data']
+    cards = requests.get(
+        'https://valorant-api.com/v1/playercards', headers=headers).json()['data']
+    partycards = []
+    for partyusers in players:
+        if partyusers['partyId'] == partyid and partyusers['gameName'] != username['name']:
+            userparty.append(partyusers)
+    for party in players:
+        for allcards in cards:
+            if allcards['uuid'] == party['playerCard'] and party['partyId'] == partyid and party['gameName'] != username['name']:
+                partycards.append(allcards)
+    PlayerCard = loadout['Identity']['PlayerCardID']
+    PlayerTitle = loadout['Identity']['PlayerTitleID']
+    Title = []
+    Card = []
+
+    for card in cards:
+        if card['uuid'] == PlayerCard:
+            Card.append(card)
+
+    for title in titles:
+        if title['uuid'] == PlayerTitle:
+            Title.append(title)
     for agents in agent_pic:
         if agent_lastid == agents['uuid']:
             agent_lastpic = agents['displayIconSmall']
@@ -153,14 +166,15 @@ def home(request):
                                              'cuwins': cuwins, 'cutotal': cutotal, 'culoss': culoss, 'winpcu': winpcu, 'rrchange': rrupdate,
                                              'sec': int(timeplayed_sec), 'min': int(timeplayed_min), 'gamemode': gamemode.upper(),
                                              'mapname': mapname, 'mappic': mappic, 'result': result.upper(), 'agentpic': agent_lastpic, 'icon': gamemodeIcon,
-                                             'won': roundsWon, 'lost': roundsLost, 'aryan': mode['displayName'], 'killcount': killcount, 'deathcount': deathcount, 'assistscount': assistscount, 'scorecount': scorecount})
+                                             'won': roundsWon, 'lost': roundsLost, 'aryan': mode['displayName'], 'killcount': killcount, 'deathcount': deathcount, 'assistscount': assistscount, 'scorecount': scorecount,
+                                             'party': userparty, 'cards': partycards})
 
 
 def Match(request):
-    match_info=requests.get(
+    match_info = requests.get(
         'https://pd.ap.a.pvp.net/match-details/v1/matches/{}'.format(match[0]['MatchID']), headers=headers).json()['matchInfo']
 
-    map=[]
+    map = []
 
     for mapId in maps:
         if mapId['mapUrl'] == match_info['mapId']:
@@ -181,25 +195,25 @@ def collection(request):
 
 
 def agents(request):
-    owned=requests.get(
+    owned = requests.get(
         f'https://pd.ap.a.pvp.net/store/v1/entitlements/{puuid}/01bb38e1-da47-4e6a-9b3d-945fe4655707', headers=headers).json()['Entitlements']
 
-    MainList=[]
-    characters_main=content['Characters']
+    MainList = []
+    characters_main = content['Characters']
     for agents in owned:
         for characters in characters_main:
             if characters['ID'].lower() == agents['ItemID']:
                 MainList.append(characters['Name'])
-    MainList=sorted(MainList)
-    agent_name=[]
-    agent_locked=[]
+    MainList = sorted(MainList)
+    agent_name = []
+    agent_locked = []
     for agent in agent_pic:
         if agent['displayName'] in {"Phoenix", "Jett", "Sova", "Sage", "Brimstone"}:
             continue
         for characters_pic in owned:
             if characters_pic['ItemID'] == agent['uuid']:
                 agent_name.append(agent)
-    locked={agent['uuid'] for agent in all if not agent['isBaseContent']
+    locked = {agent['uuid'] for agent in all if not agent['isBaseContent']
               } - {agent['ItemID'] for agent in owned}
     for locked_agent in locked:
         for character_locked in agent_pic:
