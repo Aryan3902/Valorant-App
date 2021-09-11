@@ -1,0 +1,297 @@
+body {
+  margin: 0px;
+  padding: 0;
+  font-size: 62.5%;
+  font-family: Arial, Helvetica, sans-serif;
+  background: rgb(0, 11, 20);
+}
+
+@font-face {
+  src: url("./fonts/Valorant\ Font.ttf");
+  font-family: val;
+}
+
+@font-face {
+  font-family: riot;
+  src: url("./fonts/TungstenNarrow-Bold.otf");
+}
+
+p {
+  margin: 0px;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.gamemode {
+  flex: 1;
+  padding: 1rem;
+  padding-top: 0rem;
+}
+
+.firsthead {
+  flex: 1;
+  color: white;
+  font-size: 1rem;
+}
+.stats-head {
+  margin: 0;
+  text-align: center;
+  padding: 1.2rem;
+  padding-bottom: 0rem;
+  text-decoration: underline;
+  margin-top: 0.7rem;
+}
+.user {
+  padding: 1rem;
+  display: flex;
+
+  background-image: url(./images/abstract-background-1024x273.jpg);
+  border-radius: 1rem;
+  margin: 1rem;
+}
+
+.lasthead {
+  margin: 1rem;
+  flex: 1;
+}
+
+.middlehead {
+  flex: 1;
+}
+.stats {
+  background-color: rgb(1, 5, 43);
+  border-radius: 1rem;
+  box-shadow: inset 0 0 20px rgb(0, 11, 20);
+  margin: 1rem;
+}
+.advance {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1rem;
+  background-color: rgb(1, 5, 43);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  box-shadow: inset 0 0 20px rgb(0, 11, 20);
+}
+
+.rank {
+  flex: 1;
+  padding: 1rem;
+  justify-content: center;
+}
+
+.rank progress {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rank img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.matchresult {
+  display: flex;
+  font-size: 1.6rem;
+  background-position-x: center;
+  background-position-y: center;
+  box-shadow: inset 0 0 1.5rem rgb(0, 11, 20);
+  border-radius: 1rem;
+  justify-content: space-between;
+}
+
+.resultDefeat {
+  font-family: "Open Sans", sans-serif;
+  letter-spacing: 0.5rem;
+  font-size: 1rem;
+  color: rgb(255, 131, 131);
+}
+
+.resultVictory {
+  font-family: "Open Sans", sans-serif;
+  letter-spacing: 0.5rem;
+  font-size: 1rem;
+  color: rgb(121, 245, 90);
+}
+
+.lastmapDefeat {
+  background: rgb(247, 46, 46);
+  background: linear-gradient(
+    90deg,
+    rgb(247, 46, 46) 30%,
+    rgba(0, 212, 255, 0) 100%
+  );
+  display: flex;
+  border-radius: 1rem;
+}
+
+.lastmapVictory {
+  background: rgb(11, 138, 0);
+  background: linear-gradient(
+    90deg,
+    rgb(22, 109, 0) 30%,
+    rgba(0, 212, 255, 0) 100%
+  );
+  display: flex;
+  border-radius: 1rem;
+}
+
+.modeIcon {
+  padding: 1rem;
+
+  max-width: 3rem;
+  max-height: 3rem;
+  border-radius: 1rem;
+}
+
+.rankname {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.winrate {
+  align-self: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  padding: 0.4rem;
+}
+
+.Progress {
+  text-align: center;
+  margin: 0px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+
+  list-style: none;
+  font-size: 2rem;
+  flex: 1;
+  color: rgb(255, 255, 255);
+  border-radius: 1rem;
+}
+
+.Map {
+  font-size: 4rem;
+  letter-spacing: 0px;
+  color: white;
+}
+
+.Agents {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Agents img {
+  width: 120px;
+  height: 120px;
+}
+
+.agentbox {
+  padding: 23px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 1rem;
+  margin: 1rem;
+}
+
+.Agent_Name {
+  padding: 10px;
+  text-align: center;
+  width: 30%;
+  font-size: 1.5rem;
+}
+
+.Lock {
+  filter: grayscale(100%);
+}
+
+.navbar {
+  display: flex;
+  list-style: none;
+  flex-direction: row;
+  margin: 0px;
+  flex-grow: 5;
+  font-size: 1rem;
+  font-family: val;
+}
+
+.navbar a {
+  padding: 1.2rem;
+  text-decoration: none;
+  color: white;
+}
+
+.agentpic {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  box-shadow: inset 0 0 15px rgb(0, 0, 0);
+  border-radius: 1rem;
+}
+
+.navbar a:hover {
+  cursor: pointer;
+  background-color: rgb(0, 81, 255);
+}
+
+.navbar a:visited {
+  color: white;
+}
+
+nav {
+  background-color: rgb(1, 11, 41);
+}
+
+.navmain {
+  display: flex;
+  color: white;
+}
+
+.navend {
+  margin: 0px;
+  align-self: center;
+  justify-self: center;
+  font-size: 1rem;
+  padding: 1.2rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  background-color: rgb(206, 62, 62);
+}
+
+.navend:hover {
+  cursor: pointer;
+  background-color: rgb(131, 15, 0);
+}
+
+.agent_head {
+  color: white;
+}
+
+h1 {
+  color: white;
+}
+
+.party {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem;
+  background-size: cover;
+  box-shadow: inset 0 0 100px rgb(0, 0, 0);
+  border-radius: 2rem;
+}
+
+.gametime {
+  text-align: center;
+  font-size: 1.2rem;
+  justify-self: center;
+  padding: 1rem;
+  align-self: center;
+}

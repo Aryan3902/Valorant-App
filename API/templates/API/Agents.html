@@ -1,0 +1,28 @@
+{% extends 'API/base.html' %}
+
+{% block content %}
+<div style="margin: 2.4rem;">
+    <h1 class="agent_head">Unlocked Agents:-</h1>
+
+        <div class = "Agents">
+            {% for img in agents %}
+                    <div class="agentbox">
+                        <img src="{{img.displayIcon}}">
+                        <br>
+                        <div class="Agent_Name">{{img.displayName}}</div>
+                    </div>
+            {% endfor %}
+        </div>
+    <h1 class="agent_head">Locked Agents:-</h1>
+        <div class = "Agents">
+            {% for lock in agents_locked %}
+                    <div class="agentbox Lock">
+                        <img src="{{lock.displayIcon}}">
+                        <br>
+                        <div class="Agent_Name">{{lock.displayName}}</div>
+                    </div>
+            {% endfor %}
+                
+        </div>
+</div>
+{% endblock %}

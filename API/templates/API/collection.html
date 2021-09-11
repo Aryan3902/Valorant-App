@@ -1,0 +1,31 @@
+{% extends 'API/base.html' %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {load static}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 style="margin: 1rem; font-size: 3.6rem">Collection</h1>
+    <div style="display: flex; flex-direction: column">
+      {% for skin in collection %}
+
+      <img
+        src="{{skin}}"
+        width="15%"
+        style="
+          margin: 1rem;
+          background-color: white;
+          padding: 1rem;
+          border-radius: 2rem;
+          border: black 1rem;
+        "
+      />
+      {% endfor %}
+    </div>
+  </body>
+</html>
+{% endblock %}

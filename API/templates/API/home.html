@@ -1,0 +1,255 @@
+{% extends 'API/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <title>Valorant Stats</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <style></style>
+  <body>
+    {% block content %}
+    <div class="card">
+      <div class="firsthead">
+        <div class="user">
+          <div style="flex-grow: 2">
+            <p style="font-size: 2rem">{{username}}</p>
+            <p style="font-size: 0.8rem">#{{tag}}</p>
+          </div>
+          {% for titlep in title %}
+          <p style="font-size: 1.8rem; opacity: 70%">{{titlep.titleText}}</p>
+          {% endfor %}
+        </div>
+        <div class="advance">
+          <div class="Progress">
+            <p style="padding: 1rem">Level : {{level}}</p>
+            <p style="padding: 1rem">XP : {{xp}}</p>
+          </div>
+          <div class="rank">
+            <div style="display: flex">
+              <img
+                src="{{rank.largeIcon}}"
+                width="70%"
+                style="margin-right: 0"
+              />
+              {% if rrchange > 0 %}
+              <h2 style="color: green">{{rrchange}}</h2>
+              {% else %}
+              <h2 style="color: red">{{rrchange}}</h2>
+              {% endif %}
+            </div>
+
+            <progress id="file" max="100" value="{{rr}}">{{rr}}</progress>
+            <p class="rankname">{{rank.tierName}}</p>
+          </div>
+          <div style="flex: 1">
+            <h1 style="text-align: center; margin-bottom: 4rem">
+              K/D: {{kd}}*
+            </h1>
+            <p style="font-size: 0.6rem">
+              *The following K/D is calculated from your previous 20 matches.
+            </p>
+          </div>
+        </div>
+        <div class="stats">
+          <h1 class="stats-head">Win Stats*</h1>
+          <div style="display: flex; padding: 1.2rem">
+            <div class="gamemode">
+              <h2>Competitive:</h2>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-evenly;
+                  font-size: 1.3rem;
+                "
+              >
+                <div>
+                  <p>{{compwins}}W</p>
+                  <p>{{comploss}}L</p>
+                </div>
+                <p class="winrate">{{winpcomp}}%</p>
+              </div>
+            </div>
+            <div class="gamemode">
+              <h2>Unrated:</h2>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-evenly;
+                  font-size: 1.3rem;
+                "
+              >
+                <div>
+                  <p>{{urwins}}W</p>
+                  <p>{{urloss}}L</p>
+                </div>
+                <p class="winrate">{{winpur}}%</p>
+              </div>
+            </div>
+            <div class="gamemode">
+              <h2>Spike Rush:</h2>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-evenly;
+                  font-size: 1.3rem;
+                "
+              >
+                <div>
+                  <p>{{srwins}}W</p>
+                  <p>{{srloss}}L</p>
+                </div>
+                <p class="winrate">{{winpsr}}%</p>
+              </div>
+            </div>
+            <div class="gamemode">
+              <h2>Custom:</h2>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-evenly;
+                  font-size: 1.3rem;
+                "
+              >
+                <div>
+                  <p>{{cuwins}}W</p>
+                  <p>{{culoss}}L</p>
+                </div>
+                <p class="winrate">{{winpcu}}%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p style="padding: 0.5rem">
+          *The following stats are for the current episode only.
+        </p>
+      </div>
+      <div class="middelhead">
+        {% for cardp in card %}
+        <img src="{{cardp.largeArt}}" />
+        {% endfor %}
+      </div>
+      <div class="lasthead" style="color: white">
+        <p style="font-size: 2rem; stroke-width: 1rem">Last Match details:</p>
+        <div>
+          <div style="margin: 1rem; display: flex; justify-content: space-between;">
+            <div
+              class="matchresult"
+              style="background-image: url('{{mappic}}'); flex-grow: 1;"
+            >
+              {% if result == 'DEFEAT' %}
+              <div>
+                <div class="lastmapDefeat">
+                  <img src="{{icon}}" class="modeIcon" title="{{gamemode}}" />
+                  <div style="align-self: center">
+                    <p class="resultDefeat">{{result}}</p>
+                    <p style="color: rgb(255, 255, 255); flex: 2">
+                      {{mapname}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                style="
+                  padding: 0.8rem;
+                  font-size: 3rem;
+                  box-shadow: inset 0 0 40px rgb(102, 0, 0);
+                "
+              >
+                {{won}}-{{lost}}
+              </div>
+              {% else %}
+              <div>
+                <div class="lastmapVictory">
+                  <img src="{{icon}}" class="modeIcon" title="{{gamemode}}" />
+                  <div style="align-self: center">
+                    <p class="resultVictory">{{result}}</p>
+                    <p style="color: rgb(255, 255, 255); flex: 2">
+                      {{mapname}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                style="box-shadow: inset 0 0 40px rgb(0, 112, 34);
+                  padding: 0.8rem;
+                  font-size: 3rem;
+                  
+                "
+              >
+                {{won}}-{{lost}}
+              </div>
+              {% endif %}
+            </div>
+            <p class="gametime ">Game Time: <br>{{min}} Min {{sec}} Sec</p>
+          </div>
+        </div>
+
+      
+          <div class="agentpic">
+            <img
+              src="{{agentpic}}"
+              title="Agent played in last match"
+              width="10%"
+            />
+            <div style="color: black; font-size: 1.5rem; align-self: center">
+              K / D / A <br />
+              {{killcount}}/ {{deathcount}}/ {{assistscount}}
+            </div>
+            <div
+              style="
+                color: black;
+                font-size: 2rem;
+                align-self: center;
+                margin-right: 1rem;
+              "
+            >
+              Score: {{scorecount}}
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between;">
+            
+            <div ><h1>In-Party:</h1>
+            {% for players in party %}
+          
+            <div
+              class="party" style="background-image: url('{{players.cardurl}}'); margin: 0.7rem;"
+            >
+              <img src="{{players.agenturl}}" alt="" width="15%" style="border-radius: 1.5rem;">
+              <div>
+                
+                <p style="font-size: 1.8rem; padding-top: 0.6rem; padding-left: 1rem;">{{players.gameName}}</p>
+                <p style="opacity: 50%; font-size: 1rem; padding-left: 1rem;">#{{players.tagLine}}</p>
+              </div>
+              <div style="align-self: center; padding-left: 2rem;">
+                <p style="font-size: 1rem;">K /D / A</p>
+                <p style="font-size: 1rem;">
+                {{players.kills}}/{{players.deaths}}/{{players.assists}}
+                </p>
+              </div>
+              
+            </div>
+            
+            {% endfor %}
+          </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+{% endblock %}
