@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+{% load static %}
+<link rel="stylesheet" href="{% static 'style_login.css' %}" />
+
+<section class="login">
+	<div class="login_box">
+		<div class="left">
+			<div class="contact">
+				<form action="#" method="POST">
+					{% csrf_token %}
+					<h3>SIGN IN</h3>
+					<input type="username" name="username" class="form-style" placeholder="Your username" id="logpass"
+						autocomplete="off">
+					<input type="password" name="password" class="form-style" placeholder="Your Password" id="logpass"
+						autocomplete="off">
+					<button class="submit" type="submit" value="submit">LET'S GO</button>
+				</form>
+			</div>
+		</div>
+		<div class="right">
+			<div class="right-text">
+				<h2>LONYX</h2>
+				<h5>A UX BASED CREATIVE AGENCEY</h5>
+			</div>
+			<div class="right-inductor"><img src="{% static 'images/valorant-reyna-4k-2020-2y.jpg' %}" alt=""></div>
+		</div>
+	</div>
+</section>
+</body>
+
+</html>

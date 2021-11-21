@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Valorant Stats</title>
-</head>
-<body>
+  </head>
+  <body>
     <nav class="navmain">
-        <ul class="navbar">
-            <a href="{% url 'home' %}"><li>Home</li></a>
-            <a href="{% url 'match' %}"><li>Matches</li></a>
-            <a href="{% url 'current' %}"><li>Current Game</li></a>
-            <a href="{% url 'store' %}"><li>Store</li></a>
-            <a href="{% url 'collection' %}"><li>Collection</li></a>
-            <a href="{% url 'agents' %}">Agents</a>
-        </ul>
-        <h2 class="navend">Login with Riot ID</h2>
+      <ul class="navbar">
+        <a href="{% url 'home' %}"><li>Home</li></a>
+        <a href="{% url 'store' %}"><li>Store</li></a>
+        <a href="{% url 'collection' %}"><li>Collection</li></a>
+        <a href="{% url 'agents' %}">Agents</a>
+      </ul>
+      <a href="{% url 'login' %}"><h2 class="navend">Login with Riot ID</h2></a>  
     </nav>
-</body>
+  </body>
 </html>
 
 {% block content %}{% endblock %}

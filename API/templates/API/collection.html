@@ -1,31 +1,175 @@
-{% extends 'API/base.html' %} {% block content %}
+{% extends 'API/base.html' %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    {load static}
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+
     <title>Document</title>
   </head>
   <body>
-    <h1 style="margin: 1rem; font-size: 3.6rem">Collection</h1>
-    <div style="display: flex; flex-direction: column">
-      {% for skin in collection %}
+    {% block content %}
+    <div class="gun_container">
+      <div class="sidearms">
+        <!-- <p style="color: white; font-size: 1rem; width: 15rem">SIDEARMS</p> -->
+        <ul>
+          <li>
+            <p class="gun_name">SIDEARMS</p>
+          </li>
+          <li>
+            <img
+              class="gun classic"
+              src="{{Classic.skin}}"
+              title="{{Classic.Name}}"
+            />
+          </li>
+          <li>
+            <img
+              class="gun shorty"
+              src="{{Shorty.skin}}"
+              title="{{Shorty.Name}}"
+            />
+          </li>
+          <li>
+            <img
+              class="gun Frenzy"
+              src="{{Frenzy.skin}}"
+              title="{{Frenzy.Name}}"
+            />
+          </li>
+          <li>
+            <img
+              class="gun ghost"
+              src="{{Ghost.skin}}"
+              title="{{Ghost.Name}}"
+            />
+          </li>
+          <li>
+            <img
+              class="gun Sheriff"
+              src="{{Sheriff.skin}}"
+              title="{{Sheriff.Name}}"
+            />
+          </li>
+        </ul>
+      </div>
+      <div class="sidearms">
+        <ul>
+          <li><p class="gun_name">SMGS</p></li>
 
-      <img
-        src="{{skin}}"
-        width="15%"
-        style="
-          margin: 1rem;
-          background-color: white;
-          padding: 1rem;
-          border-radius: 2rem;
-          border: black 1rem;
-        "
-      />
-      {% endfor %}
+          <li>
+            <img
+              class="gun Stinger"
+              src="{{Stinger.skin}}"
+              title="{{Stinger.Name}}"
+            />
+          </li>
+          <li>
+            <img
+              class="gun Spectre"
+              src="{{Spectre.skin}}"
+              title="{{Spectre.Name}}"
+            />
+          </li>
+          <li><p class="gun_name shotgun">SHOTGUNS</p></li>
+          <li>
+            <img
+              class="gun Bucky"
+              src="{{Bucky.skin}}"
+              title="{{Bucky.Name}}"
+            />
+          </li>
+          <li>
+            <img
+              class="gun Judge"
+              src="{{Judge.skin}}"
+              title="{{Judge.Name}}"
+            />
+          </li>
+        </ul>
+      </div>
+      <div class="sidearms">
+        <ul>
+          <li><p class="gun_name">RIFLES</p></li>
+
+          <li>
+            <img
+              class="gun Bulldog"
+              src="{{Bulldog.skin}}"
+              title="{{Bulldog.Name}}"
+            />
+          </li>
+          <li>
+            <img
+              class="gun Guardian"
+              src="{{Guardian.skin}}"
+              title="{{Guardian.Name}}"
+            />
+          </li>
+
+          <li>
+            <img
+              class="gun Phantom"
+              src="{{Phantom.skin}}"
+              title="{{Phantom.Name}}"
+            />
+          </li>
+          <li>
+            <img
+              class="gun Vandal"
+              src="{{Vandal.skin}}"
+              title="{{Vandal.Name}}"
+            />
+          </li>
+        </ul>
+      </div>
+      <div class="sidearms">
+        <ul>
+          <li><p class="gun_name">SNIPER RIFLES</p></li>
+
+          <li>
+            <img
+              class="gun Marshal"
+              src="{{Marshal.skin}}"
+              title="{{Marshal.Name}}"
+            />
+          </li>
+          <li>
+            <img
+              class="gun Operator"
+              src="{{Operator.skin}}"
+              title="{{Operator.Name}}"
+            />
+          </li>
+          <li><p class="gun_name shotgun">MACHINE GUNS</p></li>
+          <li>
+            <img class="gun Ares" src="{{Ares.skin}}" title="{{Ares.Name}}" />
+          </li>
+          <li>
+            <img class="gun Odin" src="{{Odin.skin}}" title="{{Odin.Name}}" />
+          </li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <p class="gun_name">MELEE</p>
+          </li>
+          <li>
+            <img
+              class="gun Bucky"
+              src="{{Melee.skin}}"
+              title="{{Melee.Name}}"
+            />
+          </li>
+        </ul>
+        <h1>{{bro}}</h1>
+      </div>
     </div>
+
+    <!-- <h1 style="color: white">{{check}}</h1> -->
   </body>
 </html>
 {% endblock %}

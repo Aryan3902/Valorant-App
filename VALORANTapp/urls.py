@@ -19,10 +19,9 @@ from API import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name="home"),
-    path('match/', views.Match, name="match"),
+    path('home/', views.home, name="home"),
     path('store/', views.store, name="store"),
     path('collection/', views.collection, name="collection"),
-    path('current/', views.current, name="current"),
     path('agents/', views.agents, name="agents"),
+    path('login/', views.login, name="login")
 ]
