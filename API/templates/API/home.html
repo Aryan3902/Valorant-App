@@ -25,6 +25,7 @@
           <p style="font-size: 1.8rem; opacity: 70%">{{title}}</p>
           
         </div>
+        <div class='changeMobile'>
         <div class="advance">
           <div class="Progress">
             <p style="padding: 1rem">Level : {{level}}</p>
@@ -107,7 +108,8 @@
           </div>
         </div>
       </div>
-      <div class="middelhead">
+    </div>
+      <div class="middlehead">
         
         <img src="{{card}}" />
 
@@ -126,7 +128,7 @@
                   <img src="{{icon}}" class="modeIcon" title="{{gamemode}}" />
                   <div style="align-self: center">
                     <p class="resultDefeat">{{result}}</p>
-                    <p style="color: rgb(255, 255, 255); flex: 2">
+                    <p style="color: rgb(255, 255, 255); flex: 2" class="mapName">
                       {{mapname}}
                     </p>
                   </div>
@@ -149,7 +151,7 @@
                   <img src="{{icon}}" class="modeIcon" title="{{gamemode}}" />
                   <div style="align-self: center">
                     <p class="resultVictory">{{result}}</p>
-                    <p style="color: rgb(255, 255, 255); flex: 2">
+                    <p style="color: rgb(255, 255, 255); flex: 2" class="mapName">
                       {{mapname}}
                     </p>
                   </div>
@@ -160,7 +162,7 @@
                   padding: 0.8rem;
                   font-size: 3rem;
                   
-                "
+                " class="scoreRes"
               >
                 {{won}}-{{lost}}
               </div>

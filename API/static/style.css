@@ -402,3 +402,80 @@ ul {
   color: white;
   letter-spacing: 0.3rem;
 }
+
+@media only screen and (max-width: 1400px) {
+  .card{
+    flex-direction: column;
+  }
+  .changeMobile{
+    display: flex;
+  }
+  .middlehead img{
+    display: none;
+  }
+  .rank img{
+    width: 80%;
+  }
+  .rank div{
+    margin-left: 20% !important;
+  }
+  .matchresult{
+    max-width: 55%;
+  }
+}
+
+@media only screen and (max-width: 730px){
+  *{
+    font-size: 80%;
+  }
+  p{
+    font-size: 50%;
+  }
+  div{
+    font-size: 1rem !important;
+  }
+  .modeIcon{
+    padding: 0.5rem;
+  }
+  .matchresult{
+    max-width: 85%;
+  }
+  .scoreRes{
+    font-size: 2rem !important;
+  }
+  .navend{
+    padding: 1rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    font-size: 0.7rem;
+  }
+  .changeMobile{
+    display: flex;
+    flex-direction: column;
+  }
+  .Progress p{
+    font-size: 2rem;
+  }
+  .stats-head{
+    font-size: 2rem;
+  }
+  .gamemode img{
+    width: 65%;
+  }
+  .mapName{
+    font-size: 1rem;
+  }
+  .modeIcon{
+    max-width: 4rem;
+    max-height: 4rem;
+  }
+  .rank h2{
+    font-size: 2rem;
+  }
+  .rank img{
+    width: 60%;
+  }
+  .rank div{
+    margin-left: 30% !important;
+  }
+}
