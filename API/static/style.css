@@ -29,10 +29,14 @@ body {
   font-family: val;
 }
 
+a {
+  text-decoration: none;
+}
+
 .navbar a {
   padding: 1.2rem;
   text-decoration: none;
-  color: white;
+  color: white !important;
 }
 .navbar a:hover {
   cursor: pointer;

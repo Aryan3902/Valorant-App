@@ -21,24 +21,24 @@
             <p style="font-size: 2rem">{{username}}</p>
             <p style="font-size: 0.8rem">#{{tag}}</p>
           </div>
-          {% for titlep in title %}
-          <p style="font-size: 1.8rem; opacity: 70%">{{titlep.titleText}}</p>
-          {% endfor %}
+          
+          <p style="font-size: 1.8rem; opacity: 70%">{{title}}</p>
+          
         </div>
         <div class="advance">
           <div class="Progress">
             <p style="padding: 1rem">Level : {{level}}</p>
-            <p style="padding: 1rem">XP : {{xp}}</p>
+            <!-- <p style="padding: 1rem">XP : {{xp}}</p> -->
           </div>
           <div class="rank">
-            <div style="display: flex">
+            <div style="display: flex; margin-left: 30%;">
               <img
                 src="{{rank.largeIcon}}"
-                width="70%"
-                style="margin-right: 0"
+                width="50%"
+                style="margin:0"
               />
               {% if rrchange > 0 %}
-              <h2 style="color: green">{{rrchange}}</h2>
+              <h2 style="color: green">+{{rrchange}}</h2>
               {% else %}
               <h2 style="color: red">{{rrchange}}</h2>
               {% endif %}
@@ -47,20 +47,20 @@
             <progress id="file" max="100" value="{{rr}}">{{rr}}</progress>
             <p class="rankname">{{rank.tierName}}</p>
           </div>
-          <div style="flex: 1">
+          <!-- <div style="flex: 1">
             <h1 style="text-align: center; margin-bottom: 4rem">
               K/D: {{kd}}*
             </h1>
             <p style="font-size: 0.6rem">
               *The following K/D is calculated from your previous 20 matches.
             </p>
-          </div>
+          </div> -->
         </div>
         <div class="stats">
-          <h1 class="stats-head">Win Stats*</h1>
+          <h1 class="stats-head">Ranks in previous acts</h1>
           <div style="display: flex; padding: 1.2rem">
             <div class="gamemode">
-              <h2>Competitive:</h2>
+              <h2>Ep3 Act2:</h2>
               <div
                 style="
                   display: flex;
@@ -69,14 +69,13 @@
                 "
               >
                 <div>
-                  <p>{{compwins}}W</p>
-                  <p>{{comploss}}L</p>
+                  <img src="{{lastRank.largeIcon}}" width="50%" alt="">
                 </div>
-                <p class="winrate">{{winpcomp}}%</p>
+                
               </div>
             </div>
             <div class="gamemode">
-              <h2>Unrated:</h2>
+              <h2>Ep3 Act1:</h2>
               <div
                 style="
                   display: flex;
@@ -85,14 +84,12 @@
                 "
               >
                 <div>
-                  <p>{{urwins}}W</p>
-                  <p>{{urloss}}L</p>
+                  <img src="{{secondRank.largeIcon}}" width="50%" alt="">
                 </div>
-                <p class="winrate">{{winpur}}%</p>
               </div>
             </div>
             <div class="gamemode">
-              <h2>Spike Rush:</h2>
+              <h2>Ep2 Act3:</h2>
               <div
                 style="
                   display: flex;
@@ -101,38 +98,19 @@
                 "
               >
                 <div>
-                  <p>{{srwins}}W</p>
-                  <p>{{srloss}}L</p>
+                  <img src="{{thirdRank.largeIcon}}" width="50%" alt="">
                 </div>
-                <p class="winrate">{{winpsr}}%</p>
+                
               </div>
             </div>
-            <div class="gamemode">
-              <h2>Custom:</h2>
-              <div
-                style="
-                  display: flex;
-                  justify-content: space-evenly;
-                  font-size: 1.3rem;
-                "
-              >
-                <div>
-                  <p>{{cuwins}}W</p>
-                  <p>{{culoss}}L</p>
-                </div>
-                <p class="winrate">{{winpcu}}%</p>
-              </div>
-            </div>
+            
           </div>
         </div>
-        <p style="padding: 0.5rem">
-          *The following stats are for the current episode only.
-        </p>
       </div>
       <div class="middelhead">
-        {% for cardp in card %}
-        <img src="{{cardp.largeArt}}" />
-        {% endfor %}
+        
+        <img src="{{card}}" />
+
       </div>
       <div class="lasthead" style="color: white">
         <p style="font-size: 2rem; stroke-width: 1rem">Last Match details:</p>
@@ -167,6 +145,7 @@
               {% else %}
               <div>
                 <div class="lastmapVictory">
+                  <!-- <img src="{{agentpic}}" class= "modeIcon" title="Agent played in last match" /> -->
                   <img src="{{icon}}" class="modeIcon" title="{{gamemode}}" />
                   <div style="align-self: center">
                     <p class="resultVictory">{{result}}</p>
@@ -187,18 +166,18 @@
               </div>
               {% endif %}
             </div>
-            <p class="gametime ">Game Time: <br>{{min}} Min {{sec}} Sec</p>
+            <!-- <p class="gametime ">Game Time: <br>{{min}} Min {{sec}} Sec</p> -->
           </div>
         </div>
 
       
-          <div class="agentpic">
+          <!-- <div class="agentpic">
             <img
               src="{{agentpic}}"
               title="Agent played in last match"
               width="10%"
             />
-            <div style="color: black; font-size: 1.5rem; align-self: center">
+            <div style="color: black; font-size: 1.5rem; align-self: center; margin-right: 1rem;">
               K / D / A <br />
               {{killcount}}/ {{deathcount}}/ {{assistscount}}
             </div>
@@ -212,11 +191,12 @@
             >
               Score: {{scorecount}}
             </div>
-          </div>
+          </div> -->
 
           <div style="display: flex; justify-content: space-between;">
             
-            <div ><h1>In-Party:</h1>
+            <div >
+              <!-- <h1>In-Party:</h1> -->
             {% for players in party %}
           
             <div
@@ -225,12 +205,12 @@
               <img src="{{players.agenturl}}" alt="" width="15%" style="border-radius: 1.5rem;">
               <div>
                 
-                <p style="font-size: 1.8rem; padding-top: 0.6rem; padding-left: 1rem;">{{players.gameName}}</p>
-                <p style="opacity: 50%; font-size: 1rem; padding-left: 1rem;">#{{players.tagLine}}</p>
+                <p style="font-size: 1.8rem; padding-top: 0.6rem; padding-left: 1rem;">{{players.name}}</p>
+                <p style="opacity: 50%; font-size: 1rem; padding-left: 1rem;">#{{players.tag}}</p>
               </div>
               <div style="align-self: center; padding-left: 2rem;">
-                <p style="font-size: 1rem;">K /D / A</p>
-                <p style="font-size: 1rem;">
+                <!-- <p style="font-size: 1rem;">K /D / A</p> -->
+                <p style="font-size: 2rem;">
                 {{players.kills}}/{{players.deaths}}/{{players.assists}}
                 </p>
               </div>
